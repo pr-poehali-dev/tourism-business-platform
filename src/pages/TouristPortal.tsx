@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Icon from '@/components/ui/icon';
 
 const TouristPortal = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -96,6 +98,26 @@ const TouristPortal = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--tourist-bg))] to-white">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b shadow-sm">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <button 
+            onClick={() => navigate('/')} 
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
+          >
+            <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+              <Icon name="Globe" size={28} className="text-primary" />
+            </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              TravelBiz
+            </span>
+          </button>
+          <Button variant="outline" onClick={() => navigate('/')}>
+            <Icon name="Home" size={18} className="mr-2" />
+            На главную
+          </Button>
+        </div>
+      </header>
+      
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-5xl font-bold text-primary mb-4">

@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
 const InvestorDashboard = () => {
+  const navigate = useNavigate();
   const portfolioStats = [
     { label: 'Общий объем инвестиций', value: '45 млн ₽', icon: 'Wallet', color: 'text-primary' },
     { label: 'Годовая доходность', value: '18.4%', icon: 'TrendingUp', color: 'text-green-400' },
@@ -69,6 +72,26 @@ const InvestorDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--business-bg))] to-slate-900 text-white">
+      <header className="sticky top-0 z-50 bg-[hsl(var(--business-bg))]/90 backdrop-blur-md border-b border-white/10">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <button 
+            onClick={() => navigate('/')} 
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
+          >
+            <div className="p-2 bg-emerald-500/20 rounded-lg group-hover:bg-emerald-500/30 transition-colors">
+              <Icon name="Globe" size={28} className="text-emerald-400" />
+            </div>
+            <span className="text-xl font-bold">
+              TravelBiz
+            </span>
+          </button>
+          <Button variant="outline" className="border-white/20 text-white hover:bg-white/10" onClick={() => navigate('/')}>
+            <Icon name="Home" size={18} className="mr-2" />
+            На главную
+          </Button>
+        </div>
+      </header>
+      
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 animate-fade-in">
           <h1 className="text-4xl font-bold mb-2">Инвестиционный портфель</h1>

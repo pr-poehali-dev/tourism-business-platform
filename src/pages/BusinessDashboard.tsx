@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
 const BusinessDashboard = () => {
+  const navigate = useNavigate();
   const stats = [
     { label: 'Турпоток за месяц', value: '2 847', change: '+12%', icon: 'Users', trend: 'up' },
     { label: 'Средний чек', value: '42 500 ₽', change: '+8%', icon: 'TrendingUp', trend: 'up' },
@@ -34,6 +37,26 @@ const BusinessDashboard = () => {
 
   return (
     <div className="min-h-screen bg-[hsl(var(--business-bg))] text-white">
+      <header className="sticky top-0 z-50 bg-[hsl(var(--business-bg))]/90 backdrop-blur-md border-b border-white/10">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <button 
+            onClick={() => navigate('/')} 
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
+          >
+            <div className="p-2 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition-colors">
+              <Icon name="Globe" size={28} className="text-purple-400" />
+            </div>
+            <span className="text-xl font-bold">
+              TravelBiz
+            </span>
+          </button>
+          <Button variant="outline" className="border-white/20 text-white hover:bg-white/10" onClick={() => navigate('/')}>
+            <Icon name="Home" size={18} className="mr-2" />
+            На главную
+          </Button>
+        </div>
+      </header>
+      
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 animate-fade-in">
           <h1 className="text-4xl font-bold mb-2">Панель управления бизнесом</h1>
